@@ -2,15 +2,12 @@
 Send email through gmail, with Jinja templating support.
 '''
 
-import sys
-import base64
 from os.path import join, exists
-from email.mime.text import MIMEText
 
 from gmail import GMail, Message
 from jinja2 import Environment, FileSystemLoader
 
-from .util import FP_TEMPLATES
+from util import FP_TEMPLATES
 
 #
 #  Filepaths
@@ -49,8 +46,8 @@ def send(gmail, to, context):
     msg = Message(subject, to=to, text=body)
     # Call the Gmail API
     try:
-        sent_msg = gmail.send(msg)
-        print(f'Message id {sent_msg["id"]} successfully sent to "{to}"')
-        return sent_msg
+        gmail.send(msg)
+        print(f'Message successfully sent to "{to}"')
+        return msg
     except Exception as error:
         print(f'Error when sending to "{to}":\n{error}\n')

@@ -4,5 +4,6 @@ __pycache__
 
 /.venv
 
-credentials.json
-token.json
+/bulkgmail/templates/body.txt
+/bulkgmail/templates/subject.txt
+/data.csv

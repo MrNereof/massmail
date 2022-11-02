@@ -2,8 +2,8 @@ import csv
 from os.path import join, exists
 from argparse import ArgumentParser
 from time import sleep
-from .util import HERE, FP_TEMPLATES
-from .gmail import send, get_gmail
+from util import HERE, FP_TEMPLATES
+from mail import send, get_gmail
 
 #
 #  Init
