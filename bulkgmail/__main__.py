@@ -3,7 +3,7 @@ from os.path import join, exists
 from argparse import ArgumentParser
 from time import sleep
 from .util import HERE, FP_TEMPLATES
-from .gmail import send
+from .gmail import send, get_gmail
 
 #
 #  Init
@@ -30,10 +30,12 @@ with open(FP_SUBJECT, 'r') as f:
 
 if __name__ == "__main__":
     parser = ArgumentParser()
+    parser.add_argument("-s", "--sender", required=True, type=str,
+        help='Gmail sender')
+    parser.add_argument("-p", "--password", required=True, type=str,
+        help='Gmail password')
     parser.add_argument("--data", required=True, type=str,
         help='CSV file defining variables to be injected into the Jinja templates')
-    parser.add_argument("--sender", required=True, type=str,
-        help='Sender email address (this should match the Google account that generated the "credentials.json" file)')
     args = parser.parse_args()
 
     codes = set()
@@ -41,7 +43,9 @@ if __name__ == "__main__":
     with open(args.data, 'r') as f:
         contexts = list(csv.DictReader(f))
 
+    gmail = get_gmail(args.sender, args.password)
+
     for context in contexts:
         # send email and sleep to stay under usage limits
-        send(sender=args.sender, to=context['email'], context=context)
+        send(gmail=gmail, to=context['email'], context=context)
         sleep(0.5)

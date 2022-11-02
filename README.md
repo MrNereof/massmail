@@ -2,11 +2,7 @@
 Install
 ---
 
-Requires python 3.6+
-
 ```
-python3.6 -m venv .venv
-source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -27,6 +23,6 @@ Usage
 
 * Run like so:
 
-        python -m bulkgmail --sender you@gmail.com --data data.csv
+        python bulkgmail --sender you@gmail.com --data data.csv
 
 For an example of building a mass email campaign, where each email has a unique code and a URL, see the `bulkgmail/examples` folder.
