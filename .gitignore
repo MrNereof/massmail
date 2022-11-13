@@ -4,6 +4,6 @@ __pycache__
 
 /.venv
 
-/bulkgmail/templates/body.txt
-/bulkgmail/templates/subject.txt
+/massmail/templates/body.txt
+/massmail/templates/subject.txt
 /data.csv
